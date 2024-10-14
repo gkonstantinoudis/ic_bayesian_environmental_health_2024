@@ -1,0 +1,35 @@
+---
+title: "Quantifying the impact of the environment on health using Bayesian methods"
+subtitle: "Feedback"
+author:
+ - name: ""
+   email: ""
+institute: ""
+date: 2024-10-18
+date-format: medium
+title-slide-attributes:
+  data-background-color: "#f3f4f4"
+  data-background-image: "../../assets/bmeh_normal.png"
+  data-background-size: 80%
+  data-background-position: 60% 120%
+  subparagraph: yes
+format:
+  revealjs:
+    slide-number: true
+    incremental: false
+    chalkboard:
+      buttons: false
+      preview-links: auto
+    logo: "../../assets/bmeh_normal.png"
+    theme: [default, ../../assets/style.scss]
+---
+
+# Thank you!
+
+# Questions?
+
+# Feedback 
+
+![](qrcode.png){width=50%}
+
+
