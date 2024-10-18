@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="welcome_and_introduction_files/libs/clipboard/clipboard.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/tabby.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/popper.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="welcome_and_introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="welcome_and_introduction_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="welcome_and_introduction_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="welcome_and_introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.354">
+<script src="bayesian_workflow_files/libs/clipboard/clipboard.min.js"></script>
+<script src="bayesian_workflow_files/libs/quarto-html/tabby.min.js"></script>
+<script src="bayesian_workflow_files/libs/quarto-html/popper.min.js"></script>
+<script src="bayesian_workflow_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="bayesian_workflow_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="bayesian_workflow_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="bayesian_workflow_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="bayesian_workflow_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.54">
 
-  <title>Quantifying the impact of the environment on health using Bayesian methods</title>
+  <meta name="author" content="Elizaveta Semenova">
+  <title>Bayesian workflow</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="bayesian_workflow_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="bayesian_workflow_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -25,26 +26,91 @@
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
       width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="bayesian_workflow_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="bayesian_workflow_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
     margin-top: 1em;
-    margin-bottom: 1em;  
+    margin-bottom: 1em;
     border-radius: .25rem;
   }
 
-  .callout.callout-style-simple { 
+  .callout.callout-style-simple {
     padding: 0em 0.5em;
     border-left: solid #acacac .3rem;
     border-right: solid 1px silver;
@@ -95,7 +161,7 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-    
+
   .callout.callout-titled.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
@@ -146,7 +212,7 @@
   .callout-title {
     display: flex
   }
-    
+
   .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
@@ -157,7 +223,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -258,12 +325,12 @@
     }
     .reveal .footnotes ol {
       counter-reset: ol;
-      list-style-type: none; 
+      list-style-type: none;
       margin-left: 0;
     }
     .reveal .footnotes ol li:before {
       counter-increment: ol;
-      content: counter(ol) ". "; 
+      content: counter(ol) ". ";
     }
     .reveal .footnotes ol li > p:first-child {
       display: inline-block;
@@ -305,19 +372,19 @@
     .reveal .slide > img.r-stretch.quarto-figure-center {
       display: block;
       margin-left: auto;
-      margin-right: auto; 
+      margin-right: auto;
     }
     .reveal .slide > img.stretch.quarto-figure-left,
     .reveal .slide > img.r-stretch.quarto-figure-left  {
       display: block;
       margin-left: 0;
-      margin-right: auto; 
+      margin-right: auto;
     }
     .reveal .slide > img.stretch.quarto-figure-right,
     .reveal .slide > img.r-stretch.quarto-figure-right  {
       display: block;
       margin-left: auto;
-      margin-right: 0; 
+      margin-right: 0;
     }
   </style>
 </head>
@@ -325,293 +392,333 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" subparagraph="yes" class="quarto-title-block center">
-  <h1 class="title">Quantifying the impact of the environment on health using Bayesian methods</h1>
-  <p class="subtitle">Welcome and Introduction</p>
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
+  <h1 class="title">Bayesian workflow</h1>
+  <p class="subtitle">Good practice of Bayesian inference</p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Elizaveta Semenova
+</div>
+<div class="quarto-title-author-email">
+<a href="mailto:elizaveta.p.semenova@gmail.com">elizaveta.p.semenova@gmail.com</a>
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Epidemiology and Biostatistics, Imperial College London
+          </p>
+    </div>
 </div>
 
-  <p class="date">Oct 18, 2024</p>
+  <p class="date">Aug 21, 2024</p>
 </section>
-<section>
-<section id="welcome" class="title-slide slide level1 center">
-<h1>Welcome!</h1>
-
-</section>
-<section id="logistics" class="slide level2 smaller">
-<h2>Logistics</h2>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
 <ul>
-<li><strong>Wi-Fi</strong> Network: eduroam, imperial.</li>
-<li><strong>Restrooms</strong>.</li>
-<li><strong>Course materials</strong>. All Material (lectures/labs) is located on github (https://github.com/gkonstantinoudis/ic_bayesian_environmental_health_2024)</li>
+<li class="fragment">Bayesian inference recap: What? Why? How?</li>
+<li class="fragment">What is a Bayesian workflow and why do we need it?</li>
+<li class="fragment">Principles of Bayesian workflow</li>
+<li class="fragment">Modern Bayesian workflow</li>
 </ul>
 </section>
-<section id="overview-of-workshop" class="slide level2 bigger">
-<h2>Overview of workshop</h2>
-<div style="font-size: 130%;">
-<p>The <strong>Quantifying the impact of the environment on health using Bayesian methods</strong> course is a two-day course adapted from the <strong>SHARP Workshop</strong> given at Columbia. It consists of seminars and hands-on analytical sessions to provide an <em>approachable</em> and <em>practical</em> overview of <strong>concepts</strong>, <strong>techniques</strong>, and <strong>data analysis methods</strong> used in Bayesian modelling with applications in Environmental Health.</p>
+
+<section>
+<section id="bayesian-inference" class="title-slide slide level1 center">
+<h1>Bayesian inference</h1>
+
+</section>
+<section id="bayes-formula" class="slide level2">
+<h2>Bayes formula:</h2>
+<p><span class="math display">\[p(\theta|y) = \frac{p(y | \theta) p(\theta)}{p(y)}\]</span> Can you recall what the components of the Bayes formula are?</p>
+<img data-src="assets/bmeh_normal.png" class="r-stretch">
+</section>
+<section id="bayes-formula-1" class="slide level2">
+<h2>Bayes formula:</h2>
+<p><span class="math display">\[p(\theta|y) = \frac{p(y | \theta) p(\theta)}{p(y)}\]</span> Can you recall what the components of the Bayes formula are?</p>
+<img data-src="assets/bmeh_normal.png" class="r-stretch">
+<ul>
+<li class="fragment"><span class="math inline">\(p(\theta)\)</span> is the <em>prior</em> distribution, i.e.&nbsp;what is known <em>a priori</em></li>
+<li class="fragment"><span class="math inline">\(p(y|\theta)\)</span> is the <em>likelihood</em>, i.e.&nbsp;probability of observing the data given parameters <span class="math inline">\(\theta\)</span></li>
+<li class="fragment"><span class="math inline">\(p(\theta|y)\)</span> is the <em>posterior</em> distribution, i.e.&nbsp;the distribution of parameters of interest after data were observed</li>
+</ul>
+</section>
+<section id="bayes-rule" class="slide level2">
+<h2>Bayes rule:</h2>
+<p><span class="math display">\[\underbrace{p(\theta|y)}_\text{posterior} \propto \underbrace{p(y | \theta)}_{\text{likelihood}}  \underbrace{p(\theta)}_{\text{prior}}\]</span></p>
+<div class="fragment">
+<p>What can possibly go wrong?</p>
+</div>
+<div class="fragment">
+<p>A lot can go wrong!</p>
 </div>
 </section>
-<section id="overview-of-workshop-1" class="slide level2 smaller">
-<h2>Overview of workshop</h2>
-<div>
+<section id="general-principle-of-bayesian-inference" class="slide level2">
+<h2>General principle of Bayesian inference:</h2>
 <ul>
-<li class="fragment"><p>By the end of the workshop, participants should be familiar with the following topics:</p>
+<li class="fragment">Specify a complete Bayesian model:
 <ul>
-<li class="fragment">Principles of Bayesian inference</li>
-<li class="fragment">Practicalities of Bayesian inference</li>
-<li class="fragment">Choosing priors</li>
-<li class="fragment">Different data structures (spatial, point, continuous, categorical)</li>
-<li class="fragment">Advantages and drawbacks of Bayesian approaches</li>
-<li class="fragment">Temporal modeling</li>
-<li class="fragment">Spatial modeling</li>
-<li class="fragment">Spatio-temporal modeling</li>
-<li class="fragment">Hierarchical modeling</li>
-<li class="fragment">Exposure response functions</li>
-<li class="fragment">Examples of use</li>
-<li class="fragment">Software options</li>
+<li class="fragment">specify likelihood</li>
+<li class="fragment">specify priors for all parameters (saying “I don’t know” is also a prior)</li>
 </ul></li>
 </ul>
+</section>
+<section id="general-principle-of-bayesian-inference-1" class="slide level2">
+<h2>General principle of Bayesian inference:</h2>
+<ul>
+<li class="fragment">Example:
+<ul>
+<li class="fragment">consider <strong>data</strong> <span class="math inline">\(y = \{ y_1, ..., y_n\}\)</span></li>
+<li class="fragment">specify an <strong>observation model</strong>, e.g.&nbsp;<span class="math display">\[p(y|\theta) = \prod_i N(y_i | \theta, \sigma^2)\]</span> <!-- - here $\theta$ is a parameter which we want to infer--></li>
+<li class="fragment">complete the model with a prior distribution, e.g.&nbsp;<span class="math display">\[p(\theta)=N(0,1)\]</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="general-principle-of-bayesian-inference-2" class="slide level2">
+<h2>General principle of Bayesian inference:</h2>
+<ul>
+<li class="fragment">Specify a complete Bayesian model</li>
+<li class="fragment">Sample the posterior distribution of the parameter <span class="math inline">\(\theta\)</span>.</li>
+</ul>
+<div class="fragment">
+<p>Sometimes posterior is available in a closed form.</p>
+</div>
+<div class="fragment">
+<p>But rarely.</p>
 </div>
 </section>
-<section id="bayesian-modelling-workshop-team" class="slide level2">
-<h2>Bayesian Modelling Workshop Team</h2>
-
-<img data-src="assets/instructor.png" class="r-stretch"></section>
-<section id="day-1-october-18th-2024" class="slide level2">
-<h2>Day 1 (October 18th 2024)</h2>
-<div style="font-size: 50%;">
-<table>
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Activity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>8:30 - 9:00</td>
-<td>Check in and Breakfast</td>
-</tr>
-<tr class="even">
-<td>9:00 - 9:15</td>
-<td><a href="/lectures/welcome_and_introduction/welcome_and_introduction.qmd">Welcome and Introduction</a></td>
-</tr>
-<tr class="odd">
-<td>9:15 - 10:00</td>
-<td><a href="/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd">Introduction to Bayesian Methods</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>10:00 - 10:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="odd">
-<td>10:15 - 11:00</td>
-<td><a href="/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd">Introduction to Bayesian Methods</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>11:00 - 11:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="odd">
-<td>11:15 - 12:00</td>
-<td><a href="/lectures/bayesian_workflow/bayesian_workflow.qmd">Bayesian Workflow</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>12:00 - 1:00</td>
-<td>Networking Lunch</td>
-</tr>
-<tr class="odd">
-<td>1:00 - 1:45</td>
-<td><a href="/lectures/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd">Bayesian Regression and Temporal Modeling</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>1:45 - 2:00</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="odd">
-<td>2:00 - 2:45</td>
-<td><a href="/labs/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd">Bayesian Regression and Temporal Modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>2:45 - 3:00</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="odd">
-<td>3:00 - 3:45</td>
-<td><a href="/lectures/hierarchical_modelling/hierarchical_modelling.qmd">Hierarchical Modeling</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>3:45 - 4:00</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="odd">
-<td>4:00 - 4:45</td>
-<td><a href="/labs/hierarchical_modelling/hierarchical_modelling.qmd">Hierarchical Modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>4:45 - 5:00</td>
-<td>Questions and Wrap-up</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="day-2-october-21st-2024" class="slide level2">
-<h2>Day 2 (October 21st 2024)</h2>
-<div style="font-size: 50%;">
-<table>
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Activity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>8:30 - 9:00</td>
-<td>Check in and Breakfast</td>
-</tr>
-<tr class="even">
-<td>9:00 - 10:00</td>
-<td><a href="/lectures/spatiotemporal_models/sstmodels.qmd">Spatial and Spatio-temporal Modeling</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>10:00 - 10:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="even">
-<td>10:15 - 11:00</td>
-<td><a href="/labs/spatiotemporal_models/spatiotemporal_models.qmd">Spatial and Spatio-temporal Modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>11:00 - 11:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="even">
-<td>11:15 - 12:00</td>
-<td><a href="lectures/exposure_response/exposure_response.qmd">Exposure-response modelling</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>12:00 - 1:00</td>
-<td>Networking Lunch</td>
-</tr>
-<tr class="even">
-<td>1:00 - 2:00</td>
-<td><a href="/labs/exposure_response/exposure_response.qmd">Exposure-response modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>2:00 - 2:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="even">
-<td>2:15 - 3:00</td>
-<td><a href="lectures/software_options/software_options.qmd">Software Options</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>3:00 - 3:15</td>
-<td>Break / One-on-one questions</td>
-</tr>
-<tr class="even">
-<td>3:15 - 4:15</td>
-<td><a href="/labs/software_options/software_options.qmd">Software Options</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>4:15 - 5:00</td>
-<td>Workshop Summary, Interactive Panel Discussion &amp; Course Wrap-up</td>
-</tr>
-<tr class="even">
-<td>5:00 - 5:15</td>
-<td>Questions and Wrap-up</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="what-is-your-experience-level-with-r" class="slide level2 smaller">
-<h2>What is your experience level with R?</h2>
-</section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
-</section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-1" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="probabilistic-programming-languages" class="slide level2">
+<h2>Probabilistic programming languages</h2>
+<p>Probabilistic programming languages (PPLs) from a user’s perspective:</p>
 <ul>
-<li>the middle 95 range of values you would get had the experiment been repeated in the exact same condition 100 times. So the extreme values you might expect to fall outside purely by chance</li>
-<li>Assuming CI=confidence interval, if I randomly sample from a population 100 times and calculate the mean and SE for each draw, 95% of those computed intervals will include the true population mean.</li>
-<li>Confidence in having attained correct results is 95% (meaning a 5% chance of being incorrect); also indicates stability or repeatability of results</li>
-<li>If we were to take many samples from the population and compute a 95% confidence interval from each of them the same way, we would expect about 95% of the intervals to contain the true parameter value</li>
-<li>If the 95% CI crosses the null, then your association is not statistically significant.</li>
+<li class="fragment">PPLs are designed to let the user <strong>focus on modelling</strong> while inference happens automatically.</li>
+<li class="fragment">Users need to specify
+<ul>
+<li class="fragment">prior,</li>
+<li class="fragment">likelihood.</li>
+</ul></li>
+<li class="fragment">Inference is performed via powerful algorithms such as, for example, Markov Chain Monte Carlo (<strong>MCMC</strong>).</li>
+<li class="fragment">Availability of <strong>diagnostic tools</strong>.</li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-2" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="remark-on-inference-methods" class="slide level2">
+<h2>Remark on inference methods</h2>
 <ul>
-<li>95% of random iterations wherein parameter of interest falls within specified range</li>
-<li>95% of 95%CIs will upon replication include the true population parameter</li>
-<li>There is 5% chance of being wrong or making the wrong assumption.</li>
-<li>If 100 CIs are created, 95 of the 100 will cover the true value</li>
-<li>The range of values between which the “true” answer lies 95% of the time if you ran an experient over and over again.</li>
+<li class="fragment">Alongside “exact”methods such as MCMC, there also exist approximate methods, such as Variation Inference (VI).</li>
+<li class="fragment">We are opting to use MCMC whenever possible since it has theoretical guarantees.</li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-3" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="diagnosing-mcmc-outputs" class="slide level2">
+<h2>Diagnosing MCMC outputs</h2>
+<p>We use multiple chains of MCMC to estimate the posterior:</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/trace_theta.png" style="width:50.0%"></p>
+</center></div>
+</section>
+<section id="diagnosing-mcmc-outputs-1" class="slide level2">
+<h2>Diagnosing MCMC outputs</h2>
 <ul>
-<li>That there is a 95% probability that the result contains a true parameter when drawing from a random sample repeatedly.</li>
-<li>95% percent of the time the estimate will fall within this range of 95% CI.</li>
-<li>I am 95% confident that the population parameters is in this confidence interval</li>
-<li>A statistic of uncertainty around the mean measurement.</li>
-<li>The result is 95% true.</li>
+<li class="fragment">Convergence diagnostics
+<ul>
+<li class="fragment"><span class="math inline">\(\hat{R}\)</span> statistic,</li>
+<li class="fragment">traceplots.</li>
+</ul></li>
+<li class="fragment">Effective sample size (ESS):
+<ul>
+<li class="fragment">samples will be typically autocorrelated within a chain, which increases the uncertainty of the estimation of posterior quantities,</li>
+<li class="fragment">ESS – number of <em>independent</em> samples required to obtain the same level of uncertainty as from the available dependent samples.</li>
+</ul></li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-4" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
-<ul>
-<li>The true value is 95% likely to be within the upper and lower CI limits</li>
-<li>If we take 100 different samples and compute a confidence interval for each sample, we would expect approximately 95 of the 100 confidence intervals to contain the true population parameter.</li>
-<li>There is a 5% chance that the true value lies outside of the given range.</li>
-<li>Determines the precision and accuracy of model predictions (larger CI means less precision, too small is potential overfitting, etc.)</li>
-<li>95 times out of 100 the true estimate will lie within this interval</li>
-</ul>
+<section id="diagnosing-mcmc-outputs-2" class="slide level2">
+<h2>Diagnosing MCMC outputs</h2>
+<p>We use multiple chains of MCMC to inspect convergence after warm-up:</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/trace_theta.png" style="width:50.0%"></p>
+</center></div>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-5" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
-<div>
-<ul>
-<li class="fragment">Frequentist framework: If we were to repeat the data collection process 100 times and construct confidence intervals for each sample, 95 of those would contain the true parameter (i.e., the target parameter is fixed but unknown, and the interval is random, in other words, there exists a true value of the target parameter, and we may or may not be capturing it with the 95% CI).</li>
-<li class="fragment">Bayesian framework: Given the observed data and our prior beliefs, there is a 95% probability that the true parameter value falls within the credible interval (i.e., target parameter is random but interval is fixed).</li>
-<li class="fragment">Philosophical difference but with differences in methodology and use cases.</li>
-</ul>
-</div>
-<!-- - Frequentist framework: “There is an 95% probability that when computing a confidence interval from data of this sort, the effect falls within this range”. -->
-<!-- - Bayesian framework allows us to say “given the observed data, the effect has 95% probability of falling within this range”. -->
+<section id="diagnosing-mcmc-outputs-3" class="slide level2">
+<h2>Diagnosing MCMC outputs</h2>
+<p>We use multiple chains and inspect convergence after warm-up:</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/trace_theta_bad.png" style="width:50.0%"></p>
+<p>…</p>
+</center></div>
+</section>
+<section id="diagnosing-mcmc-outputs-4" class="slide level2">
+<h2>Diagnosing MCMC outputs</h2>
+<p>The post-warm-up samples of <span class="math inline">\(\theta\)</span> approximate its posterior distribution:</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/post_theta.png" style="width:50.0%"></p>
+</center></div>
 </section></section>
+<section>
+<section id="principles-of-bayesian-workflow" class="title-slide slide level1 center">
+<h1>Principles of Bayesian workflow</h1>
+
+</section>
+<section id="workflows-as-a-good-practice" class="slide level2">
+<h2>Workflows as a ‘good practice’</h2>
+<p>Workflows exist in a variety of disciplines. For example, in machine learning workflow standards are being formalised under the name of MLOps:</p>
+<center>
+<p><img data-src="assets/mlops-loop-en.png" style="width:50.0%"></p>
+</center></section>
+<section id="boxs-loop" class="slide level2">
+<h2>Box’s loop</h2>
+<p>In the 1960’s, the statistician Box formulated the notion of a loop to understand the nature of the scientific method. This loop is called Box’s loop by Blei et. al.&nbsp;(2014):</p>
+<center>
+<p><img data-src="assets/boxes_loop.png" style="width:60.0%"></p>
+</center></section>
+<section id="modern-bayesian-workflow" class="slide level2">
+<h2>Modern Bayesian workflow</h2>
+<p>A systematic review of the steps within the modern Bayesian workflow, described in Gelman et al.&nbsp;(2020):</p>
+<center>
+<p><img data-src="assets/bayes_workflow.png" style="width:40.0%"></p>
+</center></section>
+<section id="prior-predictive-checks" class="slide level2">
+<h2>Prior predictive checks</h2>
+<p><strong>Prior predictive checking</strong> consists in simulating data from the priors:</p>
+<ul>
+<li class="fragment">visualize priors (especially after transformation),</li>
+<li class="fragment">this shows the range of data compatible with the model,</li>
+<li class="fragment">it helps understand the adequacy of the chosen priors, as it is often easier to elicit expert knowledge on measureable quantities of interest rather than abstract parameter values.</li>
+</ul>
+</section>
+<section id="iterative-model-building" class="slide level2">
+<h2>Iterative model building</h2>
+<p>A possible realisation of the Bayesian workflow loop:</p>
+<ul>
+<li class="fragment">Understand the <strong>domain</strong> and problem,</li>
+<li class="fragment">Formulate the model <strong>mathematically</strong>,</li>
+<li class="fragment">Implement model, test, <strong>debug</strong>,</li>
+<li class="fragment"><strong>debug, debug, debug</strong></li>
+</ul>
+</section>
+<section id="iterative-model-building-1" class="slide level2">
+<h2>Iterative model building</h2>
+<ul>
+<li class="fragment">Understand the <strong>domain</strong> and problem,</li>
+<li class="fragment">Formulate the model <strong>mathematically</strong>,</li>
+<li class="fragment">Implement model, test, <strong>debug</strong>,</li>
+<li class="fragment">Perform <strong>prior predictive</strong> check,</li>
+<li class="fragment">Fit the model,</li>
+<li class="fragment">Assess <strong>convergence diagnostics</strong>,</li>
+<li class="fragment">Perform <strong>posterior predictive</strong> check,</li>
+<li class="fragment">Improve the model <strong>iteratively</strong>: from baseline to complex and computationally efficient models.</li>
+</ul>
+</section></section>
+<section>
+<section id="examples" class="title-slide slide level1 center">
+<h1>Examples</h1>
+
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<p>Assume that the true data comes from the model <span class="math display">\[y_i = a + b x_i + \epsilon_i, \quad \epsilon_i \sim N(0, \sigma^2).\]</span></p>
+<center>
+<p><img data-src="assets/data1.png" style="width:45.0%"></p>
+</center></section>
+<section id="model" class="slide level2">
+<h2>Model</h2>
+<p>We implemented the model in our favourite PPL:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>code <span class="ot">&lt;-</span> <span class="fu">nimbleCode</span>({</span>
+<span id="cb1-2"><a href=""></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb1-3"><a href=""></a>    y[i] <span class="sc">~</span> <span class="fu">dnorm</span>(a, <span class="at">sd =</span> sigma)</span>
+<span id="cb1-4"><a href=""></a>  }</span>
+<span id="cb1-5"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="prior-predictive-check" class="slide level2">
+<h2>Prior predictive check</h2>
+<p>Let us draw samples <strong>from the priors</strong>, i.e.&nbsp;we are <strong>not using any data at this stage yet</strong>, only trying to see what kind of data (<span class="math inline">\(y\)</span>) this model is able to generate.</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/data2.png" style="width:45.0%"></p>
+</center></div>
+</section>
+<section id="prior-predictive-check-1" class="slide level2">
+<h2>Prior predictive check</h2>
+<p>Something doesn’t look right…</p>
+<div class="fragment">
+<center>
+<p><img data-src="assets/data2.png" style="width:45.0%"></p>
+</center></div>
+</section>
+<section id="debug" class="slide level2">
+<h2>Debug</h2>
+<p>There was a bug in the model. Let’s correct it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>code <span class="ot">&lt;-</span> <span class="fu">nimbleCode</span>({</span>
+<span id="cb2-2"><a href=""></a>  a <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
+<span id="cb2-3"><a href=""></a>  b <span class="sc">~</span> <span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">100</span>)</span>
+<span id="cb2-4"><a href=""></a>  sigma <span class="sc">~</span> <span class="fu">T</span>(<span class="fu">dnorm</span>(<span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">10</span>))</span>
+<span id="cb2-5"><a href=""></a></span>
+<span id="cb2-6"><a href=""></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb2-7"><a href=""></a>    y[i] <span class="sc">~</span> <span class="fu">dnorm</span>(a <span class="sc">+</span> b <span class="sc">*</span> x, <span class="at">sd =</span> sigma)</span>
+<span id="cb2-8"><a href=""></a>  }</span>
+<span id="cb2-9"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="prior-redictive-check-again" class="slide level2">
+<h2>Prior redictive check again</h2>
+<center>
+<p><img data-src="assets/data3.png" style="width:45.0%"></p>
+<p>Better: now the range of prior predictive draws is covering the data.</p>
+</center></section>
+<section id="fit-the-model" class="slide level2">
+<h2>Fit the model</h2>
+Print summary:
+<center>
+<p><img data-src="assets/fit1.png" style="width:60.0%"></p>
+</center></section>
+<section id="plot-estimates" class="slide level2">
+<h2>Plot estimates</h2>
+<center>
+<p><img data-src="assets/est1.png" style="width:45.0%"></p>
+</center></section>
+<section id="convergence-diagnostics" class="slide level2">
+<h2>Convergence diagnostics</h2>
+<center>
+<p><img data-src="assets/fit1_conv.png" style="width:60.0%"></p>
+</center></section>
+<section id="convergence-diagnostics-1" class="slide level2">
+<h2>Convergence diagnostics</h2>
+<p>Traceplots</p>
+<center>
+<p><img data-src="assets/traceplots1.png" style="width:45.0%"></p>
+</center></section>
+<section id="posterior-predictive-check" class="slide level2">
+<h2>Posterior predictive check</h2>
+<center>
+<p><img data-src="assets/posterior1.png" style="width:45.0%"></p>
+</center></section></section>
 <section id="questions" class="title-slide slide level1 center">
 <h1>Questions?</h1>
+<div class="quarto-auto-generated-content">
+<p><img src="../../assets/bmeh_normal.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
-<img src="../../assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
-
+</div>
 </div>
 </section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="welcome_and_introduction_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/quarto-support/support.js"></script>
-  
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/quarto-support/support.js"></script>
 
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/math/math.js"></script>
+
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="bayesian_workflow_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -621,7 +728,6 @@
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -629,7 +735,7 @@
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":false,"preview-links":"auto"},
 'smaller': false,
- 
+
         // Display controls in the bottom right corner
         controls: false,
 
@@ -826,31 +932,20 @@
           toggleBodyColorMode(bsSheetEl);
         }
       }
-      toggleBodyColorPrimary();  
+      toggleBodyColorPrimary();
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
       const isCodeAnnotation = (el) => {
         for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
+          if (clz.startsWith('code-annotation-')) {
             return true;
           }
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -864,11 +959,11 @@
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
           button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
+          tooltip = new bootstrap.Tooltip(button,
+            { trigger: "manual",
               customClass: "code-copy-button-tooltip",
               offset: [0, -8]});
-          tooltip.show();    
+          tooltip.show();
         }
         setTimeout(function() {
           if (tooltip) {
@@ -882,11 +977,50 @@
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -896,11 +1030,20 @@
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
-        window.tippy(el, config); 
+        window.tippy(el, config);
       }
       const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
       for (var i=0; i<noterefs.length; i++) {
@@ -911,7 +1054,11 @@
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
@@ -953,6 +1100,6 @@
       }
     });
     </script>
-    
+
 
 </body></html>
